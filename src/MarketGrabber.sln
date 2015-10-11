@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGrabber.Host", "MarketGrabber.Host\MarketGrabber.Host.csproj", "{896F20AC-8D63-4A24-98EE-5535AAEBAA15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGrabber.Common", "MarketGrabber.Common\MarketGrabber.Common.csproj", "{ACABCA98-D740-4727-8F38-B09FDD9F9EA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGrabber.Actors", "MarketGrabber.Actors\MarketGrabber.Actors.csproj", "{EF90D4DC-F9E5-4FEB-B9B4-B5B0F2209893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGrabber.Repositories.MongoDb", "MarketGrabber.Repositories.MongoDb\MarketGrabber.Repositories.MongoDb.csproj", "{F3805E81-C213-4679-8192-63D0887403A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{896F20AC-8D63-4A24-98EE-5535AAEBAA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{896F20AC-8D63-4A24-98EE-5535AAEBAA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{896F20AC-8D63-4A24-98EE-5535AAEBAA15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACABCA98-D740-4727-8F38-B09FDD9F9EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACABCA98-D740-4727-8F38-B09FDD9F9EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACABCA98-D740-4727-8F38-B09FDD9F9EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACABCA98-D740-4727-8F38-B09FDD9F9EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF90D4DC-F9E5-4FEB-B9B4-B5B0F2209893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF90D4DC-F9E5-4FEB-B9B4-B5B0F2209893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF90D4DC-F9E5-4FEB-B9B4-B5B0F2209893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF90D4DC-F9E5-4FEB-B9B4-B5B0F2209893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3805E81-C213-4679-8192-63D0887403A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3805E81-C213-4679-8192-63D0887403A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3805E81-C213-4679-8192-63D0887403A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3805E81-C213-4679-8192-63D0887403A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
