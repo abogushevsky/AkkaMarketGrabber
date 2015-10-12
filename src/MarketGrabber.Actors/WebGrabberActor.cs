@@ -4,6 +4,16 @@ namespace MarketGrabber.Actors
 {
     public class WebGrabberActor : UntypedActor
     {
+		public class DownloadUrl 
+		{
+			public DownloadUrl(string url) 
+			{
+				this.Url = url;
+			}
+
+			public string Url { get; }
+		}
+			
         #region Overrides of UntypedActor
 
         /// <summary>
@@ -13,7 +23,9 @@ namespace MarketGrabber.Actors
         /// <param name="message">The message.</param>
         protected override void OnReceive(object message)
         {
-            throw new System.NotImplementedException();
+			if (message is DownloadUrl) 
+			{
+			}
         }
 
         #endregion
