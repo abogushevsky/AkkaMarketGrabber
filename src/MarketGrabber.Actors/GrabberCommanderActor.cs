@@ -4,6 +4,14 @@ namespace MarketGrabber.Actors
 {
     public class GrabberCommanderActor : ReceiveActor, IWithUnboundedStash
     {
+        #region Messages
+
+        public class CanAcceptJob
+        {
+        }
+
+        #endregion Messages
+
         #region Implementation of IActorStash
 
         /// <summary>
