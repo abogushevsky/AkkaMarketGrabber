@@ -21,9 +21,24 @@ namespace MarketGrabber.Actors
                 Context.ActorOf(Props.Create(() => new HtmlParserActor()).WithRouter(new RoundRobinPool(10)));
         }
 
+        private void BecomeWorking()
+        {
+            Become(Working);
+        }
+
+        private void BecomeWaiting()
+        {
+            Become(Waiting);
+        }
+
         private void Waiting()
         {
             Receive<GrabberCommanderActor.AbleToAcceptJob>(job => Sender.Tell(new GrabberCommanderActor.CanAcceptJob(job.Url)));
+        }
+
+        private void Working()
+        {
+            
         }
     }
 }
