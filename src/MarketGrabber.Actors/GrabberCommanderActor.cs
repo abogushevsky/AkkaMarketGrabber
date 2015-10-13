@@ -1,4 +1,6 @@
-﻿using Akka.Actor;
+﻿using System.Runtime.CompilerServices;
+using Akka.Actor;
+using MarketGrabber.Actors.Messages;
 
 namespace MarketGrabber.Actors
 {
@@ -6,8 +8,18 @@ namespace MarketGrabber.Actors
     {
         #region Messages
 
-        public class CanAcceptJob
+        public class CanAcceptJob : MessageWithUrl
         {
+            public CanAcceptJob(string url) : base (url)
+            {
+            }
+        }
+
+        public class AbleToAcceptJob : MessageWithUrl
+        {
+            public AbleToAcceptJob(string url) : base(url)
+            {
+            }
         }
 
         #endregion Messages

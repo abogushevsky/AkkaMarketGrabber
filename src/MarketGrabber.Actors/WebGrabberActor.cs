@@ -1,17 +1,15 @@
 ﻿using Akka.Actor;
+using MarketGrabber.Actors.Messages;
 
 namespace MarketGrabber.Actors
 {
     public class WebGrabberActor : UntypedActor
     {
-		public class DownloadUrl 
+		public class DownloadUrl : MessageWithUrl
 		{
-			public DownloadUrl(string url) 
+			public DownloadUrl(string url) : base(url)
 			{
-				this.Url = url;
 			}
-
-			public string Url { get; }
 		}
 			
         #region Overrides of UntypedActor

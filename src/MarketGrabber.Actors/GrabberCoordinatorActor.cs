@@ -7,5 +7,10 @@ namespace MarketGrabber.Actors
         public GrabberCoordinatorActor()
         {
         }
+
+        private void Waiting()
+        {
+            Receive<GrabberCommanderActor.AbleToAcceptJob>(job => Sender.Tell(new GrabberCommanderActor.CanAcceptJob(job.Url)));
+        }
     }
 }
