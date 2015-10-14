@@ -1,10 +1,21 @@
 ﻿using Akka.Actor;
 using Akka.Routing;
+using MarketGrabber.Actors.Messages;
 
 namespace MarketGrabber.Actors
 {
     public class GrabberCoordinatorActor : ReceiveActor
     {
+		#region Messages 
+
+		public class BeginJob : MessageWithUrl 
+		{
+			public BeginJob(string url) : base(url) 
+			{
+			}
+		}
+
+		#endregion Messages
         private IActorRef downloaderActor;
         private IActorRef parserActor;
 
@@ -34,6 +45,11 @@ namespace MarketGrabber.Actors
         private void Waiting()
         {
             Receive<GrabberCommanderActor.AbleToAcceptJob>(job => Sender.Tell(new GrabberCommanderActor.CanAcceptJob(job.Url)));
+			Receive<BeginJob> (job => 
+			{
+				BecomeWorking();
+				this.downloaderActor.Tell(new WebGrabberActor.DownloadUrl(job.Url));
+			});
         }
 
         private void Working()
