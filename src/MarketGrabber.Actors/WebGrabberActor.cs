@@ -7,9 +7,12 @@ namespace MarketGrabber.Actors
     {
 		public class DownloadUrl : MessageWithUrl
 		{
-			public DownloadUrl(string url) : base(url)
+			public DownloadUrl(string url, MarketUrlTypes urlType) : base(url)
 			{
+                this.UrlType = urlType;
 			}
+
+            public MarketUrlTypes UrlType { get; }
 		}
 			
         #region Overrides of UntypedActor

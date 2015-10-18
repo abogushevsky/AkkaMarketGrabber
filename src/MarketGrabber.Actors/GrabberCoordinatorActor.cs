@@ -15,6 +15,19 @@ namespace MarketGrabber.Actors
 			}
 		}
 
+        public class PageContent
+        {
+            public PageContent(MarketUrlTypes urlType, string content)
+            {
+                this.UrlType = urlType;
+                this.Content = content;
+            }
+
+            public MarketUrlTypes UrlType { get; }
+
+            public string Content { get; }
+        }
+
 		#endregion Messages
         private IActorRef downloaderActor;
         private IActorRef parserActor;

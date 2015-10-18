@@ -61,6 +61,7 @@
     <Compile Include="GrabberCommanderActor.cs" />
     <Compile Include="GrabberCoordinatorActor.cs" />
     <Compile Include="HtmlParserActor.cs" />
+    <Compile Include="Messages\MarketUrlTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebGrabberActor.cs" />
     <Compile Include="Messages\MessageWithUrl.cs" />
