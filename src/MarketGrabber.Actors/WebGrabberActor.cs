@@ -30,6 +30,16 @@ namespace MarketGrabber.Actors
             public string Content { get; }
         }
 
+        public class DownloadFailedResult : MessageWithUrl 
+        {
+            public DownloadFailedResult(MarketUrlTypes urlType, string url) : base(url)
+            {
+                this.UrlType = urlType;
+            }
+
+            public MarketUrlTypes UrlType { get; }
+        }
+
         private class WebRequestResult : DownloadUrlResult
         {
             public WebRequestResult(MarketUrlTypes urlType, string content, string url, bool isSuccess) : base(urlType, content, url)
@@ -37,7 +47,7 @@ namespace MarketGrabber.Actors
                 this.IsSuccess = isSuccess;
             }
 
-            private bool IsSuccess { get; }
+            public bool IsSuccess { get; }
         }
 
         private readonly HttpClient httpClient;
@@ -67,7 +77,8 @@ namespace MarketGrabber.Actors
 
             Receive<WebRequestResult>(msg =>
             {
-
+                if (msg.IsSuccess) Sender.Tell(new DownloadUrlResult(msg.UrlType, msg.Content, msg.Url));
+                else Sender.Tell(new DownloadFailedResult(msg.UrlType, msg.Url));
             });
         }
 
