@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entities\Feedback.cs" />
     <Compile Include="Entities\Shop.cs" />
+    <Compile Include="Entities\ShopFeedback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
