@@ -55,14 +55,18 @@ namespace MarketGrabber.Actors
 
         private void Working()
         {
-            Receive<DownloadUrlResult>(page =>
+            Receive<WebGrabberActor.DownloadUrlResult>(page =>
             {
                 switch (page.UrlType)
                 {
                     case MarketUrlTypes.MainPage:
+                        this.parserActor.Tell(new HtmlParserActor.ParseStarsGroups(page.Content));
+                        break;
+                    case MarketUrlTypes.StarsGroupPage:
+                        this.parserActor.Tell(new HtmlParserActor.ParsePages(page.Content, page.UrlType));
                         break;
                     case MarketUrlTypes.FiveStarPage:
-                    case MarketUrlTypes.FourStarPage:                        
+                    case MarketUrlTypes.FourStarPage:
                     case MarketUrlTypes.ThreeStarPage:
                     case MarketUrlTypes.TwoStarPage:
                     case MarketUrlTypes.OneStarPage:

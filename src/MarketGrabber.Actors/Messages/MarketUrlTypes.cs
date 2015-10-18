@@ -9,6 +9,7 @@ namespace MarketGrabber.Actors.Messages
     public enum MarketUrlTypes
     {
         MainPage,
+        StarsGroupPage,
         FiveStarPage,
         FourStarPage,
         ThreeStarPage,

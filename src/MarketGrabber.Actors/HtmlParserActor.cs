@@ -16,16 +16,22 @@ namespace MarketGrabber.Actors
 
         public class ParsePages : ParseMessageBase
         {
-            public ParsePages(string content) : base(content)
+            public ParsePages(string content, MarketUrlTypes starsType) : base(content)
             {
+                this.StarsType = starsType;
             }
+
+            public MarketUrlTypes StarsType { get; }
         }
 
         public class ParseFeedbacks : ParseMessageBase
         {
-            public ParseFeedbacks(string content) : base(content)
+            public ParseFeedbacks(string content, int stars) : base(content)
             {
+                this.Stars = stars;
             }
+
+            public int Stars { get; }
         }
 
         #endregion Messages
