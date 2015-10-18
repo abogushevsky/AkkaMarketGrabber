@@ -77,8 +77,8 @@ namespace MarketGrabber.Actors
 
             Receive<WebRequestResult>(msg =>
             {
-                if (msg.IsSuccess) Sender.Tell(new DownloadUrlResult(msg.UrlType, msg.Content, msg.Url));
-                else Sender.Tell(new DownloadFailedResult(msg.UrlType, msg.Url));
+                if (msg.IsSuccess) Context.Parent.Tell(new DownloadUrlResult(msg.UrlType, msg.Content, msg.Url));
+                else Context.Parent.Tell(new DownloadFailedResult(msg.UrlType, msg.Url));
             });
         }
 
