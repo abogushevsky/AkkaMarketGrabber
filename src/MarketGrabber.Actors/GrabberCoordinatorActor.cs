@@ -61,7 +61,7 @@ namespace MarketGrabber.Actors
 			Receive<BeginJob> (job => 
 			{
 				BecomeWorking();
-				this.downloaderActor.Tell(new WebGrabberActor.DownloadUrl(job.Url));
+				this.downloaderActor.Tell(new WebGrabberActor.DownloadUrl(job.Url, MarketUrlTypes.MainPage));
 			});
         }
 
