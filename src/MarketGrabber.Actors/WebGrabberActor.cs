@@ -1,10 +1,11 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using Akka.Actor;
 using MarketGrabber.Actors.Messages;
 
 namespace MarketGrabber.Actors
 {
-    public class WebGrabberActor : UntypedActor
+    public class WebGrabberActor : ReceiveActor
     {
 		public class DownloadUrl : MessageWithUrl
 		{
@@ -39,24 +40,41 @@ namespace MarketGrabber.Actors
             private bool IsSuccess { get; }
         }
 
-        #region Overrides of UntypedActor
+        private readonly HttpClient httpClient;
 
-        /// <summary>
-        /// To be implemented by concrete UntypedActor, this defines the behavior of the UntypedActor.
-        ///             This method is called for every message received by the actor.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        protected override void OnReceive(object message)
+        public WebGrabberActor()
         {
-			if (message is DownloadUrl) 
-			{
-			    using (HttpClient httpClient = new HttpClient())
-			    {
-			        
-			    }
-			}
+            this.httpClient = new HttpClient();
+            Initialize();
+        }
+        
+        private void Initialize()
+        {
+            Receive<DownloadUrl>(msg =>
+            {
+                this.httpClient.GetStringAsync(msg.Url).ContinueWith(task =>
+                {
+                    try
+                    {
+                        return new WebRequestResult(msg.UrlType, task.Result, msg.Url, true);
+                    }
+                    catch (Exception)
+                    {
+                        return new WebRequestResult(msg.UrlType, null, msg.Url, false);
+                    }
+                }).PipeTo(Self);
+            });
+
+            Receive<WebRequestResult>(msg =>
+            {
+
+            });
         }
 
-        #endregion
+        protected override void PostStop()
+        {
+            this.httpClient.Dispose();
+            base.PostStop();
+        }
     }
 }
