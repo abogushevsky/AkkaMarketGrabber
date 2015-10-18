@@ -1,4 +1,5 @@
-﻿using Akka.Actor;
+﻿using System;
+using Akka.Actor;
 using Akka.Routing;
 using MarketGrabber.Actors.Messages;
 
@@ -67,7 +68,23 @@ namespace MarketGrabber.Actors
 
         private void Working()
         {
-            
+            Receive<PageContent>(page =>
+            {
+                switch (page.UrlType)
+                {
+                    case MarketUrlTypes.MainPage:
+                        break;
+                    case MarketUrlTypes.FiveStarPage:
+                    case MarketUrlTypes.FourStarPage:                        
+                    case MarketUrlTypes.ThreeStarPage:
+                    case MarketUrlTypes.TwoStarPage:
+                    case MarketUrlTypes.OneStarPage:
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            });
         }
     }
 }
