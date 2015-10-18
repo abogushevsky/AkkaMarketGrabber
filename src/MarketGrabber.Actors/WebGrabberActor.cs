@@ -1,4 +1,5 @@
-﻿using Akka.Actor;
+﻿using System.Net.Http;
+using Akka.Actor;
 using MarketGrabber.Actors.Messages;
 
 namespace MarketGrabber.Actors
@@ -14,7 +15,30 @@ namespace MarketGrabber.Actors
 
             public MarketUrlTypes UrlType { get; }
 		}
-			
+
+        public class DownloadUrlResult : MessageWithUrl
+        {
+            public DownloadUrlResult(MarketUrlTypes urlType, string content, string url) : base(url)
+            {
+                this.UrlType = urlType;
+                this.Content = content;
+            }
+
+            public MarketUrlTypes UrlType { get; }
+
+            public string Content { get; }
+        }
+
+        private class WebRequestResult : DownloadUrlResult
+        {
+            public WebRequestResult(MarketUrlTypes urlType, string content, string url, bool isSuccess) : base(urlType, content, url)
+            {
+                this.IsSuccess = isSuccess;
+            }
+
+            private bool IsSuccess { get; }
+        }
+
         #region Overrides of UntypedActor
 
         /// <summary>
@@ -26,6 +50,10 @@ namespace MarketGrabber.Actors
         {
 			if (message is DownloadUrl) 
 			{
+			    using (HttpClient httpClient = new HttpClient())
+			    {
+			        
+			    }
 			}
         }
 

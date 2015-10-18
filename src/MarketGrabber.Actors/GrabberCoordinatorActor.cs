@@ -14,20 +14,7 @@ namespace MarketGrabber.Actors
 			public BeginJob(string url) : base(url) 
 			{
 			}
-		}
-
-        public class PageContent
-        {
-            public PageContent(MarketUrlTypes urlType, string content)
-            {
-                this.UrlType = urlType;
-                this.Content = content;
-            }
-
-            public MarketUrlTypes UrlType { get; }
-
-            public string Content { get; }
-        }
+		}        
 
 		#endregion Messages
         private IActorRef downloaderActor;
@@ -68,7 +55,7 @@ namespace MarketGrabber.Actors
 
         private void Working()
         {
-            Receive<PageContent>(page =>
+            Receive<DownloadUrlResult>(page =>
             {
                 switch (page.UrlType)
                 {
